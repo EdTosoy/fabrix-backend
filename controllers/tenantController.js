@@ -19,6 +19,7 @@ const createTenant = async (req, res, next) => {
         }
 
         // Create and save a new tenant instance.
+        // test github
         const newTenant = new Tenant({ 
             name, 
             email, 
