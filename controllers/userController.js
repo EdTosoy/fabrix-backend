@@ -94,7 +94,7 @@ const createUser = async (req, res, next) => {
     }
 };
 
-const getAllUser = async (req, res) => {
+const getAllUser = async (req, res, next) => {
     try {
         let users;
 
@@ -118,11 +118,11 @@ const getAllUser = async (req, res) => {
 
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        next(error); // Pass error to global error handler.
     }
 }
 
-const getTenantById = async (req, res) => {
+const getTenantById = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -137,11 +137,11 @@ const getTenantById = async (req, res) => {
 
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        next(error); // Pass error to global error handler.
     }
 }
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
     try {   
         const { id } = req.params;
         const { name, email, phone, role, password } = req.body;
@@ -165,17 +165,18 @@ const updateUser = async (req, res) => {
         user.name = name || user.name;
         user.email = email || user.email;
         user.phone = phone || user.phone;
+        user.role = role || user.role;
         user.password = password || user.password;
 
         await user.save();
 
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        next(error); // Pass error to global error handler.
     }
 }
 
-const deactivateUser = async (req, res) => {
+const deactivateUser = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -197,11 +198,11 @@ const deactivateUser = async (req, res) => {
 
         res.status(200).json({ message: 'User deactivated successfully' });
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        next(error); // Pass error to global error handler.
     }
 }
 
-const reactivateUser = async (req, res) => {
+const reactivateUser = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -223,7 +224,7 @@ const reactivateUser = async (req, res) => {
 
         res.status(200).json({ message: 'User reactivated successfully' });
     } catch (error) {
-        res.status(500).json({ error: 'Server Error' });
+        next(error); // Pass error to global error handler. 
     }
 }
 

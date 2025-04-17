@@ -28,7 +28,7 @@ const createTenant = async (req, res, next) => {
 
         // Create the main branch.
         const newBranch = new Branch({
-            tenant: newTenant._id,
+            tenantID: newTenant._id,
             name: "Main",
             address: address,
             phone

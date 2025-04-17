@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const BranchSchema = new mongoose.Schema(
     {
-        tenant: {
+        tenantID: {
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'Tenant',
             required: true
@@ -18,7 +18,7 @@ const BranchSchema = new mongoose.Schema(
         phone: {
             type: String
         },
-        manager: {
+        managerID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },

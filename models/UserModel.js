@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema(
     {
-        tenant: {
+        tenantID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Tenant',
             required: true
         },
-        branch: {
+        branchID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Branch'
         },
